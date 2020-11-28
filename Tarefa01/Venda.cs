@@ -14,7 +14,7 @@ namespace Tarefa01
 
         public double ValorMedio()
         {
-            return (Valor / Valor);
+            return (Valor / Quantidade);
         }
     }
 }

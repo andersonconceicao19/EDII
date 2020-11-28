@@ -12,24 +12,37 @@ namespace Tarefa01
             string Nome = Console.ReadLine();
             Vendedor vendedor = new Vendedor(1, Nome, 0, null);
             return vendedor;
-            
+        }
+
+        public static Venda gerarVenda()
+        {            
+            Console.Write("Quantidade vendido?: ");
+            int x = int.Parse(Console.ReadLine());
+            Console.Write("Valor da venda?: ");
+            double y = double.Parse(Console.ReadLine());
+
+            Venda venda = new Venda(x, y);
+
+            return venda;
+
         }
         static void Main(string[] args)
         {
             Vendedores vendedores = new Vendedores();
+            Vendedor vendedor = new Vendedor();
             int exit;
+            int count = 0; 
             do
             {
-                 //Console.Clear();
-
+              
                 Console.WriteLine("0 - SAIR");
                 Console.WriteLine("1 - Cadastrar Vendedor");
                 Console.WriteLine("2 - Consultar vendedor");
                 Console.WriteLine("3 - Excluir vendedor");
                 Console.WriteLine("4 - Registrar venda");
-                Console.WriteLine("5 - Listar vendedores ");
+                Console.WriteLine("5 - Listar vendedores \n");
 
-                Console.Write("\n O que deseja fazer? ");
+                Console.Write("O que deseja fazer? ");
                 exit = int.Parse(Console.ReadLine());
 
                 switch (exit)
@@ -40,12 +53,24 @@ namespace Tarefa01
                         Console.WriteLine(result ? "Salvo": "Não foi possivel cadastrar. Excedeu o limite de Cadastro");
                         Thread.Sleep(3000);
                         Console.Clear();
-                        break; 
+                        break;
+                    case 4:
+                        if(count < 3)
+                        {
+                            Console.Write("Qual dia da venda?: ");
+                            int dia = int.Parse(Console.ReadLine());
+                            vendedor.registrarVenda(dia, gerarVenda());
+                        }                        
+                        Console.Clear();
+                        count++;
+                        Console.WriteLine(count > 3 ? "Execedeu o limite máximo de regitro" : "Salvo!");
+                        Thread.Sleep(3000);
+                        
+                        Console.Clear();
+                        break;
                 }
             }
-            while( exit != 0);
-            
-       
+            while( exit != 0); 
 
         }
     }

@@ -36,10 +36,10 @@
 ------------------------------------------------
 
 0. Sair
-1. Cadastrar vendedor (*)
+1. Cadastrar vendedor (*) - OK  
 2. Consultar vendedor (**)
 3. Excluir vendedor   (***)
-4. Registrar venda
+4. Registrar venda - EM CONSTRUÇÃO  
 5. Listar vendedores  (****)
 
 
