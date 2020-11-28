@@ -5,12 +5,13 @@ namespace Tarefa01
 {
     class Program
     {
-        
+        public static int idGenerate = 0;
         public static Vendedor gerarVendedor()
         {            
             Console.Write("Nome do Vendedor: ");
             string Nome = Console.ReadLine();
-            Vendedor vendedor = new Vendedor(1, Nome, 0, null);
+            Vendedor vendedor = new Vendedor(idGenerate ,Nome);
+            idGenerate++;
             return vendedor;
         }
 
@@ -20,8 +21,15 @@ namespace Tarefa01
             int x = int.Parse(Console.ReadLine());
             Console.Write("Valor da venda?: ");
             double y = double.Parse(Console.ReadLine());
-
-            Venda venda = new Venda(x, y);
+            
+            int dia;
+            do
+            {
+                Console.Write("Qual dia da venda?: ");
+                dia = int.Parse(Console.ReadLine());
+                Thread.Sleep(1000);
+            } while (dia < 1 || dia > 30);
+            Venda venda = new Venda(x, y, dia);
 
             return venda;
 
@@ -29,7 +37,6 @@ namespace Tarefa01
         static void Main(string[] args)
         {
             Vendedores vendedores = new Vendedores();
-            Vendedor vendedor = new Vendedor();
             int exit;
             int count = 0; 
             do
@@ -51,21 +58,36 @@ namespace Tarefa01
                         bool result =  vendedores.addVendedor(gerarVendedor());
                         Console.Clear();
                         Console.WriteLine(result ? "Salvo": "Não foi possivel cadastrar. Excedeu o limite de Cadastro");
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                         Console.Clear();
+                        break;
+                    case 2:
+                        Console.Write("IDentificação do funcionario: ");
+                        int vendedorId   = int.Parse(Console.ReadLine());
+                        var vend = vendedores.searchVendedor(vendedorId);
+                        if(vend != null)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"\nId: {vend.Id}, Nome: {vend.Nome} \n");
+                            foreach (var item in vend.AsVendas)
+                            {
+                                Console.WriteLine(item.Dia != 0 ? $"Dia da venda: {item.Dia}, Quantidade: {item.Quantidade}, Valor: {item.Valor}" : "");
+                            }
+                            Console.Write("Pressione Enter Para voltar.");
+                            Console.ReadLine();
+                        }
                         break;
                     case 4:
                         if(count < 3)
                         {
-                            Console.Write("Qual dia da venda?: ");
-                            int dia = int.Parse(Console.ReadLine());
-                            vendedor.registrarVenda(dia, gerarVenda());
+                            Console.Write("ID do vendedor?: ");
+                            int idvendedor = int.Parse(Console.ReadLine());
+                            vendedores.registrarVenda(idvendedor, gerarVenda());
                         }                        
                         Console.Clear();
                         count++;
-                        Console.WriteLine(count > 3 ? "Execedeu o limite máximo de regitro" : "Salvo!");
-                        Thread.Sleep(3000);
-                        
+                        Console.WriteLine(count > 3 ? "Execedeu o limite máximo de regitro" : "Registrado com Sucesso!!");
+                        Thread.Sleep(1000);
                         Console.Clear();
                         break;
                 }

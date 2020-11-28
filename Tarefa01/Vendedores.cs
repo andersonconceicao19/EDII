@@ -1,4 +1,6 @@
 
+using System.Linq;
+
 namespace Tarefa01
 {
     public class Vendedores 
@@ -7,6 +9,7 @@ namespace Tarefa01
         private Vendedor[] osVendedores;
         private int max = 3;
         private int qtde = 0;
+
 
         public Vendedores()
         {
@@ -19,8 +22,7 @@ namespace Tarefa01
 
         public bool addVendedor(Vendedor v)
         {
-            if(qtde < 3)
-            {
+            if(qtde < 3)            {
                 osVendedores[qtde] = v;
                 qtde++;
                 return true;
@@ -32,16 +34,44 @@ namespace Tarefa01
         }
       
 
-        public Vendedor searchVendedor(Vendedor v){ 
-            return v;
+        public Vendedor searchVendedor(int id)
+        {         
+            return PegarVendedorPorId(id);
         }
+
+        public void registrarVenda(int id, Venda venda)
+        {
+            var vendedor = PegarVendedorPorId(id);
+
+
+            for (int i = 0; i < vendedor.AsVendas.Length; i++)
+            {
+                if (vendedor.AsVendas[i].Dia == 0)
+                {
+                    vendedor.AsVendas[i] = venda;
+                    break;
+                }
+            }
+            
+        }
+
         public double valorVendas (){
             return 1.1;
         }
         public double valorComissao (){
             return 1.1;
+        }    
+        private Vendedor PegarVendedorPorId(int id)
+        {
+            foreach (var item in osVendedores)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
-        
         
     }
 }

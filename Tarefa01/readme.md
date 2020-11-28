@@ -37,10 +37,10 @@
 
 0. Sair
 1. Cadastrar vendedor (*) - OK  
-2. Consultar vendedor (**)
+2. Consultar vendedor (**) - EM CONSTRUÇÃO  
 3. Excluir vendedor   (***)
-4. Registrar venda - EM CONSTRUÇÃO  
-5. Listar vendedores  (****)
+4. Registrar venda - OK  
+5. Listar vendedores  (****) 
 
 
 (*)     - Limitar o quantitativo de vendedores cadastrados (máximo 10).
