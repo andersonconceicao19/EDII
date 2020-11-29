@@ -100,6 +100,19 @@ namespace Tarefa01
                         Thread.Sleep(1000);
                         Console.Clear();
                         break;
+                    case 5:
+                        var getVendedor = vendedores.PegarTodosVendores();
+                        Console.Clear();
+                        for (int i = 0; i < getVendedor.Length; i++)
+                        {
+                            if (getVendedor[i].Id > -1)
+                            {
+                                Console.WriteLine($"ID: {getVendedor[i].Id}, Nome: {getVendedor[i].Nome}");
+                            }
+                        }
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
                 }
             }
             while( exit != 0); 

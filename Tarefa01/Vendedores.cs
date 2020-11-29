@@ -28,6 +28,10 @@ namespace Tarefa01
         {
             return 1.1;
         }
+        public Vendedor[] PegarTodosVendores()
+        {
+            return osVendedores;
+        }
         public bool addVendedor(Vendedor v)
         {
             if(qtde < 3)           
@@ -82,7 +86,6 @@ namespace Tarefa01
             return deletar;
 
         }
-      
 
         public Vendedor searchVendedor(int id)
         {         
