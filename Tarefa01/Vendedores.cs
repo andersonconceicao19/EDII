@@ -20,17 +20,67 @@ namespace Tarefa01
             }
         }
 
+        public double valorVendas()
+        {
+            return 1.1;
+        }
+        public double valorComissao()
+        {
+            return 1.1;
+        }
         public bool addVendedor(Vendedor v)
         {
-            if(qtde < 3)            {
-                osVendedores[qtde] = v;
-                qtde++;
+            if(qtde < 3)           
+            {
+                for (int i = 0; i < osVendedores.Length; i++)
+                {
+                    if (osVendedores[i].Id == -1)
+                    {
+                        osVendedores[i] = v;
+                        qtde++;
+                        break;
+                    }                    
+                   
+                }
                 return true;
             }    
             return false;     
         }
-        public bool delVendedor(Vendedor v){ 
-            return true;
+
+        public bool delVendedor(int id)
+        {
+            var vendedor = PegarVendedorPorId(id);
+            bool deletar = (qtde > 0);
+
+            if (deletar)
+            {
+                for (int i = 0; i < osVendedores.Length; i++)
+                {
+                    foreach (var item in vendedor.AsVendas)
+                    {
+                        if (item.Dia > 0)
+                        {
+                            return false;
+                        }
+                        break;
+                      
+                    }
+                }
+
+                for (int i = 0; i < osVendedores.Length; i++)
+                {
+
+                    if (osVendedores[i] == vendedor)
+                    {
+                        vendedor = new Vendedor(-1, "...");
+                        osVendedores[i] = vendedor;
+                        qtde--;
+                        deletar =  true;
+                    }
+                }               
+            }
+            return deletar;
+
         }
       
 
@@ -54,13 +104,7 @@ namespace Tarefa01
             }
             
         }
-
-        public double valorVendas (){
-            return 1.1;
-        }
-        public double valorComissao (){
-            return 1.1;
-        }    
+   
         private Vendedor PegarVendedorPorId(int id)
         {
             foreach (var item in osVendedores)

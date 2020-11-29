@@ -37,15 +37,18 @@
 
 0. Sair
 1. Cadastrar vendedor (*) - OK  
-2. Consultar vendedor (**) - EM CONSTRUÇÃO  
-3. Excluir vendedor   (***)
+2. Consultar vendedor (**) - OK
+3. Excluir vendedor   (***) - OK
 4. Registrar venda - OK  
 5. Listar vendedores  (****) 
 
 
 (*)     - Limitar o quantitativo de vendedores cadastrados (máximo 10).
+
 (**)   - Quando encontrado, deverá ser informado o id, nome, o valor total das vendas, o valor da comissão devida e 
            o valor médio das vendas diárias (de cada dia que houve registro de venda).
+
 (***)  - O vendedor só poderá ser excluído enquanto não houver nenhuma venda associada a ele.
+
 (****) - Deverá ser informado, para cada vendedor, o id, nome, valor total das vendas e o valor da comissão devida.
            Ao final da listagem, esses valores deverão ser totalizados.

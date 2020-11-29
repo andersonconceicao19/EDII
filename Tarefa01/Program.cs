@@ -75,7 +75,17 @@ namespace Tarefa01
                             }
                             Console.Write("Pressione Enter Para voltar.");
                             Console.ReadLine();
+                            Console.Clear();
                         }
+                        break;
+                    case 3:
+                        Console.Write("Id do vendedor que deseja excluir: ");
+                        vendedorId = int.Parse(Console.ReadLine());
+                        result = vendedores.delVendedor(vendedorId);
+                        Console.Clear();
+                        Console.Write(result ? "Removido com Sucesso!" : "Não foi possivel remover, o Vendedor possui vendas!");
+                        Thread.Sleep(1000);
+                        Console.Clear();                        
                         break;
                     case 4:
                         if(count < 3)
