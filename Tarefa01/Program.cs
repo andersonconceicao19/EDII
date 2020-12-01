@@ -10,7 +10,9 @@ namespace Tarefa01
         {            
             Console.Write("Nome do Vendedor: ");
             string Nome = Console.ReadLine();
-            Vendedor vendedor = new Vendedor(idGenerate ,Nome);
+            Console.WriteLine("Porcentagem sobre a venda?: ");
+            double perc = double.Parse(Console.ReadLine());
+            Vendedor vendedor = new Vendedor(idGenerate, Nome, perc);
             idGenerate++;
             return vendedor;
         }
@@ -68,11 +70,7 @@ namespace Tarefa01
                         if(vend != null)
                         {
                             Console.Clear();
-                            Console.WriteLine($"\nId: {vend.Id}, Nome: {vend.Nome} \n");
-                            foreach (var item in vend.AsVendas)
-                            {
-                                Console.WriteLine(item.Dia != 0 ? $"Dia da venda: {item.Dia}, Quantidade: {item.Quantidade}, Valor: {item.Valor}" : "");
-                            }
+                            vendedores.MostraDetalhesPorVendedor(vend);
                             Console.Write("Pressione Enter Para voltar.");
                             Console.ReadLine();
                             Console.Clear();
@@ -90,8 +88,9 @@ namespace Tarefa01
                     case 4:
                         if(count < 3)
                         {
-                            Console.Write("ID do vendedor?: ");
+                            Console.WriteLine("ID do vendedor?: ");
                             int idvendedor = int.Parse(Console.ReadLine());
+                            
                             vendedores.registrarVenda(idvendedor, gerarVenda());
                         }                        
                         Console.Clear();
@@ -103,13 +102,7 @@ namespace Tarefa01
                     case 5:
                         var getVendedor = vendedores.PegarTodosVendores();
                         Console.Clear();
-                        for (int i = 0; i < getVendedor.Length; i++)
-                        {
-                            if (getVendedor[i].Id > -1)
-                            {
-                                Console.WriteLine($"ID: {getVendedor[i].Id}, Nome: {getVendedor[i].Nome}");
-                            }
-                        }
+                        vendedores.MostrarDetalhesTodosVendedores(getVendedor);
                         Console.ReadLine();
                         Console.Clear();
                         break;

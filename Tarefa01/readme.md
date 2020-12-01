@@ -40,7 +40,7 @@
 2. Consultar vendedor (**) - OK
 3. Excluir vendedor   (***) - OK
 4. Registrar venda - OK  
-5. Listar vendedores  (****) 
+5. Listar vendedores  (****) - OK
 
 
 (*)     - Limitar o quantitativo de vendedores cadastrados (máximo 10).

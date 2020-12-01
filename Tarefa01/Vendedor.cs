@@ -9,11 +9,11 @@ namespace Tarefa01
             PercComissao = percComissao;
             AsVendas = asVendas;
         }
-        public Vendedor(int id, string nome)
+        public Vendedor(int id, string nome, double percComissao)
         {
             Id = id;
             Nome = nome;
-
+            PercComissao = percComissao;
             AsVendas = new Venda[3];
             for (int i = 0; i < 3; ++i)
             {
