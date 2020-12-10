@@ -7,7 +7,7 @@
             Nome = nome;
             Email = email;
             Telefone = telefone;
-            DtNascimento = new Data();
+            DtNascimento = dtNascimento;
         }
 
         public Contato()
