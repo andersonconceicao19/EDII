@@ -31,7 +31,6 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtFone = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.lblFone = new System.Windows.Forms.Label();
             this.txtDia = new System.Windows.Forms.TextBox();
@@ -45,23 +44,27 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.btnListar = new System.Windows.Forms.Button();
-            this.lvContatos = new System.Windows.Forms.ListView();
+            this.listContatos = new System.Windows.Forms.ListBox();
+            this.lblEmail = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(57, 32);
+            this.txtEmail.Location = new System.Drawing.Point(57, 61);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 23);
             this.txtEmail.TabIndex = 0;
+            this.txtEmail.Text = "Anderson@anderson";
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(57, 61);
+            this.txtNome.Location = new System.Drawing.Point(60, 32);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(160, 23);
+            this.txtNome.Size = new System.Drawing.Size(154, 23);
             this.txtNome.TabIndex = 1;
+            this.txtNome.Text = "Anderson";
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // txtFone
             // 
@@ -69,21 +72,12 @@
             this.txtFone.Name = "txtFone";
             this.txtFone.Size = new System.Drawing.Size(100, 23);
             this.txtFone.TabIndex = 2;
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(13, 35);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(41, 15);
-            this.lblEmail.TabIndex = 3;
-            this.lblEmail.Text = "EMAIL";
-            this.lblEmail.Click += new System.EventHandler(this.label1_Click);
+            this.txtFone.Text = "13996469589";
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(13, 64);
+            this.lblNome.Location = new System.Drawing.Point(14, 35);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(42, 15);
             this.lblNome.TabIndex = 4;
@@ -104,6 +98,7 @@
             this.txtDia.Name = "txtDia";
             this.txtDia.Size = new System.Drawing.Size(39, 23);
             this.txtDia.TabIndex = 6;
+            this.txtDia.Text = "19";
             // 
             // txtAno
             // 
@@ -111,6 +106,7 @@
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(39, 23);
             this.txtAno.TabIndex = 8;
+            this.txtAno.Text = "94";
             // 
             // txtMes
             // 
@@ -118,6 +114,7 @@
             this.txtMes.Name = "txtMes";
             this.txtMes.Size = new System.Drawing.Size(39, 23);
             this.txtMes.TabIndex = 9;
+            this.txtMes.Text = "07";
             // 
             // label4
             // 
@@ -183,6 +180,7 @@
             this.btnPesquisar.TabIndex = 16;
             this.btnPesquisar.Text = "PESQUISAR";
             this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // btnListar
             // 
@@ -192,22 +190,36 @@
             this.btnListar.TabIndex = 17;
             this.btnListar.Text = "LISTAR";
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
-            // lvContatos
+            // listContatos
             // 
-            this.lvContatos.HideSelection = false;
-            this.lvContatos.Location = new System.Drawing.Point(12, 184);
-            this.lvContatos.Name = "lvContatos";
-            this.lvContatos.Size = new System.Drawing.Size(415, 104);
-            this.lvContatos.TabIndex = 18;
-            this.lvContatos.UseCompatibleStateImageBehavior = false;
+            this.listContatos.FormattingEnabled = true;
+            this.listContatos.ItemHeight = 15;
+            this.listContatos.Location = new System.Drawing.Point(12, 184);
+            this.listContatos.Name = "listContatos";
+            this.listContatos.Size = new System.Drawing.Size(417, 94);
+            this.listContatos.TabIndex = 18;
+            this.listContatos.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
+            this.listContatos.DoubleClick += new System.EventHandler(this.listContatos_DoubleClick);
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(15, 64);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(41, 15);
+            this.lblEmail.TabIndex = 19;
+            this.lblEmail.Text = "EMAIL";
+            this.lblEmail.Click += new System.EventHandler(this.lblEmail_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 314);
-            this.Controls.Add(this.lvContatos);
+            this.ClientSize = new System.Drawing.Size(459, 314);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.listContatos);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.btnExcluir);
@@ -221,7 +233,6 @@
             this.Controls.Add(this.txtDia);
             this.Controls.Add(this.lblFone);
             this.Controls.Add(this.lblNome);
-            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.txtFone);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtEmail);
@@ -238,7 +249,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtFone;
-        private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Label lblFone;
         private System.Windows.Forms.TextBox txtDia;
@@ -252,7 +262,8 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Button btnListar;
-        private System.Windows.Forms.ListView lvContatos;
+        private System.Windows.Forms.ListBox listContatos;
+        private System.Windows.Forms.Label lblEmail;
     }
 }
 

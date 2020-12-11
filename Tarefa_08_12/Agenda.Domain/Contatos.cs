@@ -43,7 +43,7 @@ namespace Agenda.Domain
         }
         private int findContato(Contato c)
         {
-            return _agenda.FindIndex(0, x => (x.Nome == c.Nome) && (x.Email == c.Email));
+            return _agenda.FindIndex(0, x => (x.Nome == c.Nome) || (x.Email == c.Email));
         }
         public override bool Equals(object obj)
         {
