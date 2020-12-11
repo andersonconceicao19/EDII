@@ -13,6 +13,7 @@ namespace Agenda.Domain
 
         public bool Adicionar(Contato c)
         {
+            if (c.Nome == "" || c.Email == "" || c.Telefone == null || c.DtNascimento == null) return false;
             _agenda.Add(new Contato(c.Nome, c.Email, c.Telefone, c.DtNascimento));
             return true;
         }
