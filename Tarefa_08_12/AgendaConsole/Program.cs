@@ -53,12 +53,11 @@ namespace AgendaConsole
                         break;
 
                     case "2":
-                        Console.Write("Nome: ");
-                        nome = Console.ReadLine();
+                       
                         Console.Write("Email: ");
                         email = Console.ReadLine();
 
-                        var contact = contatos.Pesquisar(new Contato(nome, email, "", new Data(0, 0, 0)));
+                        var contact = contatos.Pesquisar(new Contato("", email, "", new Data(0, 0, 0)));
                         Console.Clear();
                         Console.WriteLine(contact);
                         Console.WriteLine("Pressiona qualquer tecla para Continuar");

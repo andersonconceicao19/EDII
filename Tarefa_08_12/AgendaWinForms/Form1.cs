@@ -51,7 +51,13 @@ namespace AgendaWinForms
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            
+            txtAno.Text = "";
+            txtDia.Text = "";
+            txtMes.Text = "";
+            txtEmail.Text = "";
+            txtFone.Text = "";
+            txtNome.Text = "";
+            isUpdate = false;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -69,7 +75,7 @@ namespace AgendaWinForms
                 result = contatos.Alterar((new Contato(txtNome.Text, txtEmail.Text, txtFone.Text, new Data(int.Parse(txtDia.Text), int.Parse(txtMes.Text), int.Parse(txtAno.Text)))));
                 MessageBox.Show(result ? "Alterado!" : "Não foi possivel alterar");
                 isUpdate = false;
-                listContatos.Items.Clear();
+                listar();
             }
            
 
@@ -82,11 +88,7 @@ namespace AgendaWinForms
 
         private void btnListar_Click(object sender, EventArgs e)
         {
-            listContatos.Items.Clear();
-            foreach (var item in contatos.getAllContacts())
-            {
-                listContatos.Items.Add(item);
-            }
+            listar();
         }
 
         private void listContatos_DoubleClick(object sender, EventArgs e)
@@ -108,6 +110,13 @@ namespace AgendaWinForms
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            var ObjetoPesquisa = contatos.Pesquisar(new Contato("nome", txtEmail.Text, "telefone", new Data(1, 1, 1)));
+            listContatos.Items.Clear();
+
+            foreach (var item in ObjetoPesquisa)
+            {
+                listContatos.Items.Add(item);
+            }
 
         }
 
@@ -119,6 +128,21 @@ namespace AgendaWinForms
         private void lblEmail_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+           var excluiu = contatos.Remover(new Contato(txtNome.Text, txtEmail.Text, txtFone.Text, new Data(int.Parse(txtDia.Text), int.Parse(txtMes.Text), int.Parse(txtAno.Text))));
+            MessageBox.Show(excluiu ? "Excluido!" : "Não foi possivel excluir, cabaço!");
+            listar();
+        }
+        private void listar()
+        {
+            listContatos.Items.Clear();
+            foreach (var item in contatos.getAllContacts())
+            {
+                listContatos.Items.Add(item);
+            }
         }
     }
 }

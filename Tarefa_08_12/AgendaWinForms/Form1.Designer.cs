@@ -50,7 +50,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(57, 61);
+            this.txtEmail.Location = new System.Drawing.Point(143, 64);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 23);
             this.txtEmail.TabIndex = 0;
@@ -59,7 +59,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(60, 32);
+            this.txtNome.Location = new System.Drawing.Point(146, 35);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(154, 23);
             this.txtNome.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             // txtFone
             // 
-            this.txtFone.Location = new System.Drawing.Point(57, 94);
+            this.txtFone.Location = new System.Drawing.Point(143, 97);
             this.txtFone.Name = "txtFone";
             this.txtFone.Size = new System.Drawing.Size(100, 23);
             this.txtFone.TabIndex = 2;
@@ -77,7 +77,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(14, 35);
+            this.lblNome.Location = new System.Drawing.Point(100, 38);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(42, 15);
             this.lblNome.TabIndex = 4;
@@ -86,7 +86,7 @@
             // lblFone
             // 
             this.lblFone.AutoSize = true;
-            this.lblFone.Location = new System.Drawing.Point(14, 97);
+            this.lblFone.Location = new System.Drawing.Point(100, 100);
             this.lblFone.Name = "lblFone";
             this.lblFone.Size = new System.Drawing.Size(37, 15);
             this.lblFone.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             // txtDia
             // 
-            this.txtDia.Location = new System.Drawing.Point(251, 61);
+            this.txtDia.Location = new System.Drawing.Point(337, 64);
             this.txtDia.Name = "txtDia";
             this.txtDia.Size = new System.Drawing.Size(39, 23);
             this.txtDia.TabIndex = 6;
@@ -102,7 +102,7 @@
             // 
             // txtAno
             // 
-            this.txtAno.Location = new System.Drawing.Point(373, 61);
+            this.txtAno.Location = new System.Drawing.Point(459, 64);
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(39, 23);
             this.txtAno.TabIndex = 8;
@@ -110,7 +110,7 @@
             // 
             // txtMes
             // 
-            this.txtMes.Location = new System.Drawing.Point(310, 61);
+            this.txtMes.Location = new System.Drawing.Point(396, 64);
             this.txtMes.Name = "txtMes";
             this.txtMes.Size = new System.Drawing.Size(39, 23);
             this.txtMes.TabIndex = 9;
@@ -119,7 +119,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(296, 66);
+            this.label4.Location = new System.Drawing.Point(382, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(12, 15);
             this.label4.TabIndex = 10;
@@ -128,7 +128,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(355, 64);
+            this.label5.Location = new System.Drawing.Point(441, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(12, 15);
             this.label5.TabIndex = 11;
@@ -137,7 +137,7 @@
             // lblDataNascimento
             // 
             this.lblDataNascimento.AutoSize = true;
-            this.lblDataNascimento.Location = new System.Drawing.Point(262, 40);
+            this.lblDataNascimento.Location = new System.Drawing.Point(348, 43);
             this.lblDataNascimento.Name = "lblDataNascimento";
             this.lblDataNascimento.Size = new System.Drawing.Size(129, 15);
             this.lblDataNascimento.TabIndex = 12;
@@ -145,7 +145,7 @@
             // 
             // btnGravar
             // 
-            this.btnGravar.Location = new System.Drawing.Point(105, 143);
+            this.btnGravar.Location = new System.Drawing.Point(191, 146);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 13;
@@ -155,7 +155,7 @@
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(14, 143);
+            this.btnNovo.Location = new System.Drawing.Point(100, 146);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 14;
@@ -165,16 +165,17 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(192, 143);
+            this.btnExcluir.Location = new System.Drawing.Point(278, 146);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 15;
             this.btnExcluir.Text = "EXCLUIR";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnPesquisar
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(273, 143);
+            this.btnPesquisar.Location = new System.Drawing.Point(359, 146);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
             this.btnPesquisar.TabIndex = 16;
@@ -184,7 +185,7 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(354, 143);
+            this.btnListar.Location = new System.Drawing.Point(440, 146);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(75, 23);
             this.btnListar.TabIndex = 17;
@@ -198,7 +199,7 @@
             this.listContatos.ItemHeight = 15;
             this.listContatos.Location = new System.Drawing.Point(12, 184);
             this.listContatos.Name = "listContatos";
-            this.listContatos.Size = new System.Drawing.Size(417, 94);
+            this.listContatos.Size = new System.Drawing.Size(574, 94);
             this.listContatos.TabIndex = 18;
             this.listContatos.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
             this.listContatos.DoubleClick += new System.EventHandler(this.listContatos_DoubleClick);
@@ -206,7 +207,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(15, 64);
+            this.lblEmail.Location = new System.Drawing.Point(101, 67);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(41, 15);
             this.lblEmail.TabIndex = 19;
@@ -217,7 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 314);
+            this.ClientSize = new System.Drawing.Size(598, 314);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.listContatos);
             this.Controls.Add(this.btnListar);

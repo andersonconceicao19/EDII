@@ -28,7 +28,7 @@
         }
         public override string ToString()
         {
-            return $"{Nome} {Email} {Telefone} {DtNascimento.ToString()}";
+            return $"| Nome= {Nome} | Email= {Email}| Telefone= {Telefone}| Data de Nascimento= { DtNascimento }|";
         }
     }
 }

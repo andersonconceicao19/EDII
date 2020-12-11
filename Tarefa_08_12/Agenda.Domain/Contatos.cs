@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Agenda.Domain
 {
@@ -17,11 +18,11 @@ namespace Agenda.Domain
             _agenda.Add(new Contato(c.Nome, c.Email, c.Telefone, c.DtNascimento));
             return true;
         }
-        public Contato Pesquisar(Contato c)
+        public List<Contato> Pesquisar(Contato c)
         {
-            var x = findContato(c);
+            var x = _agenda.FindIndex(0, x => x.Email == c.Email);
             if (x == -1) return null;
-            return _agenda[x];
+            return _agenda.Where(x => x.Email == c.Email).ToList();
         }
         public bool Alterar(Contato c)
         {
@@ -42,8 +43,8 @@ namespace Agenda.Domain
             return _agenda;
         }
         private int findContato(Contato c)
-        {
-            return _agenda.FindIndex(0, x => (x.Nome == c.Nome) || (x.Email == c.Email));
+        {           
+            return _agenda.FindIndex(0, x => (x.Email == c.Email) && (x.Nome == c.Nome));
         }
         public override bool Equals(object obj)
         {
