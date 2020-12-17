@@ -8,15 +8,20 @@ namespace Atividade_15_12_2020
     {
         public Exemplar(int tombo)
         {
-            Tombo = tombo;
+            adicionarExemplar();
             Emprestimos = new List<Emprestimo>();
         }
 
-        public int Tombo { get; private set; }
+        public int Tombo { get; private set; } = 0;
         public List<Emprestimo> Emprestimos { get; private set; }
 
+        public void adicionarExemplar()
+        {
+            Tombo++;
+        }
         public bool emprestar()
         {
+           // Emprestimos.Add();
             return true;
         }
         public bool devolver()

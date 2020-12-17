@@ -14,12 +14,24 @@ namespace Atividade_15_12_2020
 
         public void adicionar(Livro livro)
         {
-
+            Acervo.Add(livro);
         }
         public Livro pesquisar()
         {
             var livros = new Livro();
             return livros;
+        }
+        public Livro getLivroPorISBN(int ibsn)
+        {
+            foreach (var item in Acervo)
+            {
+               if(item.ISBN == ibsn)
+                {
+                    item.adicionarExemplar(1);
+                    return item;
+                }
+            }
+            return null;
         }
     }
     /*

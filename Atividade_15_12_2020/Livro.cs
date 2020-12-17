@@ -14,22 +14,22 @@ namespace Atividade_15_12_2020
             Titulo = titulo;
             Autor = autor;
             Editora = editora;
-            Exemplares = new List<Exemplar>();
         }
 
         public int ISBN { get; private set; }
         public string Titulo { get; private set; }
         public string Autor { get; private set; }
         public string Editora { get; private set; }
-        public List<Exemplar> Exemplares { get; private set; }
+  
 
-        public void adicionarExemplar(Exemplar exemplar)
+        public void adicionarExemplar(int qtd)
         {
+            new Exemplar(qtd);
         }
-        public int qtdeExemplares()
+        /*public int qtdeExemplares()
         {
-            return this.Exemplares.Count;
-        }
+            
+        }*/
         public int qtdeDisponiveis()
         {
             return 1;
