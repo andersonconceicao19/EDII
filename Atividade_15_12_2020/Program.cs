@@ -52,7 +52,11 @@ namespace Atividade_15_12_2020
                         // Console.WriteLine($"IBSN {result.Titulo}");
                         break;
                     case "5":
-                        
+                        Console.Write("ISBN DO EXEMPLAR: ");
+                        int isbnPartial1 = int.Parse(Console.ReadLine());
+                        var result1 = livros.getLivroPorISBN(isbnPartial1);
+                        var n =  result1.emprestar();
+                        Console.WriteLine(n ? "Emprestado" : "Livro não disponivel!");
                         break;
                     case "6":
                         break;

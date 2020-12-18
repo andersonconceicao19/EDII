@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Atividade_15_12_2020
 {
@@ -32,9 +33,22 @@ namespace Atividade_15_12_2020
         {
             
         }*/
+        public bool emprestar()
+        {
+            
+            for (int i = 0; i < Exemplares.Count; i++)
+            {
+               
+                if (Exemplares[i].emprestar())
+                {
+                   return true;
+                }
+            }
+            return false;
+        }
         public int qtdeDisponiveis()
         {
-            return 1;
+            return Exemplares.Count;
         }
         public int qtdeEmprestimos()
         {
