@@ -14,17 +14,19 @@ namespace Atividade_15_12_2020
             Titulo = titulo;
             Autor = autor;
             Editora = editora;
+            Exemplares = new List<Exemplar>();
         }
 
         public int ISBN { get; private set; }
         public string Titulo { get; private set; }
         public string Autor { get; private set; }
         public string Editora { get; private set; }
-  
+        public List<Exemplar> Exemplares { get; private set; }
 
-        public void adicionarExemplar(int qtd)
+
+        public void adicionarExemplar()
         {
-            new Exemplar(qtd);
+            Exemplares.Add(new Exemplar());
         }
         /*public int qtdeExemplares()
         {
@@ -41,6 +43,16 @@ namespace Atividade_15_12_2020
         public double percDisponibilidade()
         {
             return 1.1;
+        }
+        public override string ToString()
+        {
+            var livro = $" titulo= {this.Titulo}, Autor= {Autor}, Editora={Editora}, ISBN = {ISBN} \n" +
+                $"Quantidade de livros disponiveis = {qtdeDisponiveis()}\n" +
+                $"Quantidade de emprestimos = { qtdeEmprestimos()} \n" +
+                $"Percentual disponibilidade = {percDisponibilidade()} \n" +
+                $"{Exemplares}";
+
+            return livro;
         }
     }
     /*

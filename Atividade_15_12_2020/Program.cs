@@ -36,14 +36,20 @@ namespace Atividade_15_12_2020
                         livros.adicionar(new Livro(ibsn,titulo, autor, editora));
                         break;
                     case "2":
+
                         break;
                     case "3":
                         break;
                     case "4":
-                        Console.Write("Ibsn do bgl: ");
-                        int bla = int.Parse(Console.ReadLine());
-                        var result = livros.getLivroPorISBN(bla);
-                        // result.adicionarExemplar(this);
+                        Console.Write("ISBN DO EXEMPLAR: ");
+                        int isbnPartial = int.Parse(Console.ReadLine());
+                        var result = livros.getLivroPorISBN(isbnPartial);
+                        if (result == null) break;
+                        Console.Clear();
+                    
+                        result.adicionarExemplar();
+
+                        // Console.WriteLine($"IBSN {result.Titulo}");
                         break;
                     case "5":
                         

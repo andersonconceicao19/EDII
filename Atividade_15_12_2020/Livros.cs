@@ -27,7 +27,7 @@ namespace Atividade_15_12_2020
             {
                if(item.ISBN == ibsn)
                 {
-                    item.adicionarExemplar(1);
+                    
                     return item;
                 }
             }
