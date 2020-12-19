@@ -7,12 +7,11 @@ namespace Atividade_15_12_2020
     public class Exemplar
     {
         private static int count = 0;
+       
         public Exemplar()
         {
             adicionarExemplar();
-            Emprestimos = new List<Emprestimo>();
-            Emprestimos.Add(new Emprestimo());
-            Disponivel = true;
+           
         }
 
         public int Tombo { get; private set; }
@@ -21,15 +20,32 @@ namespace Atividade_15_12_2020
 
         public bool emprestar()
         {
-            for (int i = 0; i < Emprestimos.Count; i++)
-            {
-                if(Disponivel)
+         //   Emprestimos.Add(new Emprestimo());
+             if(Emprestimos.Count == 0)
                 {
-                    Emprestimos.Add(new Emprestimo(DateTime.Now, null));
-                    return true;
-                }                
+                    for (int i = 0; i < 1; i++)
+                    {
+                        if (Disponivel)
+                        {
+                            Emprestimos.Add(new Emprestimo(DateTime.Now, null));
+                            
+                            return true;
+                        }
+                    }
+               
+                }
+            else
+            {
+            
+                for (int i = 0; i < Emprestimos.Count; i++)
+                {
+                    if(Disponivel)
+                    {
+                        Emprestimos.Add(new Emprestimo(DateTime.Now, null));
+                        return true;
+                    }                
+                }
             }
-          
             return false;
         }
         public bool devolver()
@@ -38,6 +54,7 @@ namespace Atividade_15_12_2020
             {
                 if (!Disponivel)
                 {
+                    
                     Emprestimos[i].setDevolucao(DateTime.Now);
                     return true;
                 }
@@ -52,32 +69,17 @@ namespace Atividade_15_12_2020
         }
         public int qtdeEmprestimo()
         {
-
-            return Emprestimos.Count - Tombo;
+            return Emprestimos.Count;
         }
-        public override string ToString()
-        {
-            return $"Tombo = {Tombo}";
-        }
-
         private void adicionarExemplar()
         {
+            Emprestimos = new List<Emprestimo>();
+            Disponivel = true;
             count++;
             Tombo = count;
         }
-
+       
+        
     }
-    /*
-    ------------------------------------
-    | Exemplar                         | 
-    |----------------------------------|
-    | - tombo: int                     |
-    | - emprestimos: List<Emprestimo>  |
-    |----------------------------------|
-    | + emprestar(): bool              |
-    | + devolver(): bool               |
-    | + disponivel(): bool             |
-    | + qtdeEmprestimos(): int         |
-    ------------------------------------
-     */
+   
 }

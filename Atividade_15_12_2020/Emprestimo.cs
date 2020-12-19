@@ -30,12 +30,4 @@ namespace Atividade_15_12_2020
            DtDevolução = dateTime;
         }
     }
-    /*
-        ------------------------------
-        | Emprestimo                 |
-        |----------------------------|
-        | - dtEmprestimo: DateTime   |
-        | - dtDevolucao: DateTime    |
-        ------------------------------
-     */
 }

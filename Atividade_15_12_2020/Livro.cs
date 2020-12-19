@@ -66,36 +66,53 @@ namespace Atividade_15_12_2020
         {
             return Exemplares.Count;
         }
-        public int qtdeEmprestimos()
-        {
-            return countEmprestimo;
-        }
         public double percDisponibilidade()
         {
-            return 1.1;
+            int disp = 0;
+            for (int i = 0; i < Exemplares.Count; i++)
+            {
+                if (Exemplares[i].Disponivel)
+                {
+                    disp++;
+                }
+               
+            }
+            
+            return (disp / Exemplares.Count * 100);
         }
-        public override string ToString()
+       
+        public string sintetico()
         {
-            var livro = $" titulo= {this.Titulo}, Autor= {Autor}, Editora={Editora}, ISBN = {ISBN} \n" +
-                $"Quantidade de livros disponiveis = {qtdeDisponiveis()}\n" +
-                $"Quantidade de emprestimos = { qtdeEmprestimos()} \n" +
-                $"Percentual disponibilidade = {percDisponibilidade()} \n" +
-                $"{Exemplares}";
+            var livro = $"titulo= {this.Titulo}\n" +
+                $"Quantidade de livros disponiveis = { qtdeDisponiveis() }\n" +
+                $"Quantidade de emprestimos = { Exemplares[0].qtdeEmprestimo() } \n" +
+                $"Percentual disponibilidade = { percDisponibilidade() }% \n";
+
+            return livro;
+        }
+        public string analitico()
+        {
+            string emprestmos ="";
+            var count = Exemplares.Count;
+            for (int i = 0; i < count; i++)
+
+            {
+                for (int j = 0; j < Exemplares[i].qtdeEmprestimo(); j++)
+                {
+                    emprestmos += $" \n \nO {(j+1)}º Emprestimo = { Exemplares[i].Emprestimos[j].DtEmprestimo } \n" +
+                     $"A {(j + 1)}º Devolução = {Exemplares[i].Emprestimos[j].DtDevolução}";
+                }
+             
+            }
+
+
+                var livro = $"titulo= {this.Titulo}, \nAutor= { Autor}, \nEditora={Editora},\nISBN = {ISBN } \n" +
+                $"Quantidade de livros disponiveis = { qtdeDisponiveis() }\n" +
+                $"Quantidade de emprestimos = { Exemplares[0].qtdeEmprestimo() } \n" +
+                $"Percentual disponibilidade = { percDisponibilidade() }% \n" +
+                $"Emprestimos: \n {emprestmos}";
 
             return livro;
         }
     }
-    /*
-     - isbn: int                                   |
-    | - titulo: string                             |
-    | - autor: string                              |
-    | - editora: string                            |
-    | - exemplares: List<Exemplar>                 |
-    |----------------------------------------------|
-    | + adicionarExemplar(Exemplar exemplar): void |
-    | + qtdeExemplares(): int                      |
-    | + qtdeDisponiveis(): int                     |
-    | + qtdeEmprestimos(): int                     |
-    | + percDisponibilidade(): double
-     */
 }

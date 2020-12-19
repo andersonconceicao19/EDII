@@ -34,15 +34,5 @@ namespace Atividade_15_12_2020
             return null;
         }
     }
-    /*
-     
-------------------------------------
-| Livros                           |
-|----------------------------------|
-| - acervo: List<Livro>            |
-|----------------------------------|
-| + adicionar(Livro livro): void   |
-| + pesquisar(Livro livro): Livro  |
-------------------------------------
-     */
+
 }
