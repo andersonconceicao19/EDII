@@ -6,21 +6,28 @@ namespace Atividade_15_12_2020
     {
         public Emprestimo()
         {
-            DtEmprestimo = DateTime.Now;
-            DtDevolução = DateTime.Now;
+            DtEmprestimo = null;
+            DtDevolução = null;
 
         }
-       
-        public DateTime DtEmprestimo { get; private set; }
-        public DateTime DtDevolução { get; private set; }
 
-        public DateTime setEmprestimo(DateTime dateTime)
+        public Emprestimo(DateTime? dtEmprestimo, DateTime? dtDevolução)
         {
-            return (DtEmprestimo = dateTime);
+            DtEmprestimo = dtEmprestimo;
+            DtDevolução = dtDevolução;
+            
         }
-        public DateTime setDevolucao(DateTime dateTime)
+
+        public DateTime? DtEmprestimo { get; private set; }
+        public DateTime? DtDevolução { get; private set; }
+
+        public void setEmprestimo(DateTime? dateTime)
         {
-           return (DtDevolução = dateTime);
+            DtEmprestimo = dateTime;
+        }
+        public void setDevolucao(DateTime? dateTime)
+        {
+           DtDevolução = dateTime;
         }
     }
     /*

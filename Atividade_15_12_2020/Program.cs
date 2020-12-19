@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Atividade_15_12_2020
 {
@@ -34,6 +35,11 @@ namespace Atividade_15_12_2020
                         Console.Write("Editora: ");
                         string editora = Console.ReadLine();
                         livros.adicionar(new Livro(ibsn,titulo, autor, editora));
+                        Console.Clear();
+
+                        Console.Write("Cadastrado");
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
                     case "2":
 
@@ -44,21 +50,43 @@ namespace Atividade_15_12_2020
                         Console.Write("ISBN DO EXEMPLAR: ");
                         int isbnPartial = int.Parse(Console.ReadLine());
                         var result = livros.getLivroPorISBN(isbnPartial);
-                        if (result == null) break;
+                        if (result == null)
+                        {
+                            Console.Clear();
+                            
+                            Console.Write("ISBN do livronão cadastrado! ");
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                            break;
+                        }
                         Console.Clear();
                     
                         result.adicionarExemplar();
-
-                        // Console.WriteLine($"IBSN {result.Titulo}");
+                        Console.Clear();
+                        
+                        Console.Write("ISBN Cadastrado!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
                     case "5":
                         Console.Write("ISBN DO EXEMPLAR: ");
                         int isbnPartial1 = int.Parse(Console.ReadLine());
                         var result1 = livros.getLivroPorISBN(isbnPartial1);
                         var n =  result1.emprestar();
+                        Console.Clear();
                         Console.WriteLine(n ? "Emprestado" : "Livro não disponivel!");
+                        Thread.Sleep(1000);
                         break;
                     case "6":
+                        Console.Write("ISBN DO EXEMPLAR: ");
+                        int isbnPartial2 = int.Parse(Console.ReadLine());
+                        var result2 = livros.getLivroPorISBN(isbnPartial2);
+
+                        var n1 = result2.devolver();
+                        Console.Clear();
+                        Console.WriteLine(n1 ? "Devolução efetuada com sucesso" : "O livro já foi devolvido");
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
                 }
             } 

@@ -5,6 +5,7 @@ namespace Atividade_15_12_2020
 {
     public class Livro
     {
+        private static int countEmprestimo = 0;
         public Livro()
         {
 
@@ -41,7 +42,22 @@ namespace Atividade_15_12_2020
                
                 if (Exemplares[i].emprestar())
                 {
+                   Exemplares[i].disponivel(false);
+                   countEmprestimo++;
                    return true;
+                }
+            }
+            return false;
+        }
+        public bool devolver()
+        {
+            for (int i = 0; i < Exemplares.Count; i++)
+            {
+
+                if (Exemplares[i].devolver())
+                {
+                    Exemplares[i].disponivel(true);
+                    return true;
                 }
             }
             return false;
@@ -52,7 +68,7 @@ namespace Atividade_15_12_2020
         }
         public int qtdeEmprestimos()
         {
-            return 1;
+            return countEmprestimo;
         }
         public double percDisponibilidade()
         {

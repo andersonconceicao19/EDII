@@ -12,19 +12,20 @@ namespace Atividade_15_12_2020
             adicionarExemplar();
             Emprestimos = new List<Emprestimo>();
             Emprestimos.Add(new Emprestimo());
+            Disponivel = true;
         }
 
         public int Tombo { get; private set; }
-        public List<Emprestimo> Emprestimos { get; private set; } 
+        public List<Emprestimo> Emprestimos { get; private set; }
+        public bool Disponivel { get; private set; }
 
         public bool emprestar()
         {
             for (int i = 0; i < Emprestimos.Count; i++)
             {
-                if(!(Emprestimos[i].DtDevolução.Year == 2008))
+                if(Disponivel)
                 {
-                    Emprestimos[i].setEmprestimo(DateTime.Now);
-                    Emprestimos[i].setDevolucao(new DateTime(2008, 5, 1, 8, 30, 52));
+                    Emprestimos.Add(new Emprestimo(DateTime.Now, null));
                     return true;
                 }                
             }
@@ -33,16 +34,21 @@ namespace Atividade_15_12_2020
         }
         public bool devolver()
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < Emprestimos.Count; i++)
             {
-                Emprestimos[i].setDevolucao(DateTime.Now);
+                if (!Disponivel)
+                {
+                    Emprestimos[i].setDevolucao(DateTime.Now);
+                    return true;
+                }
             }
-            
-            return true;
+
+            return false;
         }
-        public bool disponivel()
+        public bool disponivel(bool element)
         {
-            return true;
+            Disponivel = element;
+            return Disponivel;
         }
         public int qtdeEmprestimo()
         {
