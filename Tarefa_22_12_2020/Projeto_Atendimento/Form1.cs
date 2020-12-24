@@ -1,21 +1,33 @@
-﻿using System;
+﻿using Projeto_Atendimento.DLL;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Projeto_Atendimento
 {
     public partial class Form1 : Form
     {
+        Senhas senhas = new Senhas();
         public Form1()
         {
             InitializeComponent();
         }
 
+        private void btnGerar_Click(object sender, EventArgs e)
+        {
+            this.senhas.gerarSenha();
+            //lblSenhas.Items.Add(this.senhas.Senha.GetType().GetMethod("dadosParciais()"));
+
+           
+        }
+
+        private void btnListarSenhas_Click(object sender, EventArgs e)
+        {
+            lblSenhas.Items.Clear();
+            foreach (var item in this.senhas.Senha)
+            {
+                lblSenhas.Items.Add(item.dadosParciais());
+            }
+        }
     }
 }

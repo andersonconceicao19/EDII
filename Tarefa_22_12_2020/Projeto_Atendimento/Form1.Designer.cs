@@ -49,6 +49,7 @@
             this.btnGerar.TabIndex = 0;
             this.btnGerar.Text = "Gerar";
             this.btnGerar.UseVisualStyleBackColor = true;
+            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
             // 
             // btnListarSenhas
             // 
@@ -58,6 +59,7 @@
             this.btnListarSenhas.TabIndex = 1;
             this.btnListarSenhas.Text = "Listar Senhas";
             this.btnListarSenhas.UseVisualStyleBackColor = true;
+            this.btnListarSenhas.Click += new System.EventHandler(this.btnListarSenhas_Click);
             // 
             // lblSenhas
             // 

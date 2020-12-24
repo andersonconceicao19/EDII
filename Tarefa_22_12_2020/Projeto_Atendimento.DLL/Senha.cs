@@ -7,8 +7,8 @@ namespace Projeto_Atendimento.DLL
         public Senha(int id)
         {
             Id = id;
-            DataGeracao = DateTime.Today;
-            //HoraGeracao = DateTime.Today
+            DataGeracao = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            HoraGeracao = DateTime.Now;
         }
 
         public int Id { get; private set; }
@@ -19,7 +19,7 @@ namespace Projeto_Atendimento.DLL
 
         public string dadosParciais()
         {
-            return $"{ this.Id } + ”-“ + ${ this.DataGeracao } + ”-“ + ${ this.HoraGeracao}";
+            return $"{ this.Id } - { this.DataGeracao.Date.ToString().Substring(0, 10) } - { this.HoraGeracao.TimeOfDay.ToString().Substring(0, 8) }";
         }
         public string dadosCompletos()
         {
