@@ -8,6 +8,7 @@ namespace Projeto_Atendimento
     public partial class Form1 : Form
     {
         Senhas senhas = new Senhas();
+        Guiches guiches = new Guiches();
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +29,12 @@ namespace Projeto_Atendimento
             {
                 lblSenhas.Items.Add(item.dadosParciais());
             }
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            guiches.adicionar(new Guiche());
+            lblContador.Text = guiches.GuicheLista.Count.ToString();
         }
     }
 }
