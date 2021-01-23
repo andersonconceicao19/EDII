@@ -202,23 +202,41 @@ namespace ProjetoTransporte.Cons
                         }
                         break;
                     case 7:
-                        
-                        break;
-                    case 8:
                         Console.Write("Qual origem deseja saber: ");
                         var org = Console.ReadLine();
 
                         Console.Write("Qual destino deseja saber: ");
                         var dest = Console.ReadLine();
                         var bvvc = _viagens.ViagensQueue.ToArray();
-                       
-                        var x19 = bvvc.Where(x => x.Destino.Local == dest && x.Origem.Local == org ).ToList().Count;
+
+                        var x19 = bvvc.Where(x => x.Destino.Local == dest && x.Origem.Local == org).ToList().Count;
 
                         Console.Clear();
                         Console.Write($"Foram feitas nesta rota {x19} viagens!");
                         Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
                         Console.ReadLine();
-                        
+                        break;
+                    case 8:
+                        Console.Write("Qual origem deseja saber: ");
+                        var orgx = Console.ReadLine();
+
+                        Console.Write("Qual destino deseja saber: ");
+                        var destx = Console.ReadLine();
+                        var bvvcx = _viagens.ViagensQueue.ToArray();
+
+                        var x19x = bvvcx.Where(x => x.Destino.Local == destx && x.Origem.Local == orgx).ToList();
+
+                        Console.Clear();
+
+                        for (int i = 0; i < x19x.Count; i++)
+                        {
+                            Console.WriteLine($"Veiculo: { x19x[i].Veiculo.Placa }| Viagens de {x19x[i].Origem} - para { x19x[i].Destino } ");
+                        }
+
+
+                        Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
+                        Console.ReadLine();
+
                         break;
                     case 9:
                         break;
