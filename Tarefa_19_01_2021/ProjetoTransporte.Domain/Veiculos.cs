@@ -8,12 +8,24 @@ namespace ProjetoTransporte.Domain
 {
     public class Veiculos
     {
-        public List<Veiculo> VeiculosList { get; set; }
+        public Veiculos()
+        {
+            VeiculosList = new List<Veiculo>();
+        }
+        public List<Veiculo> VeiculosList { get; private set; }
         
         public bool incluir(Veiculo veiculo)
-        {            
-            VeiculosList.Add(veiculo);
-            return true;
+        {
+            try
+            {
+                VeiculosList.Add(veiculo);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }      
+                        
         }
     }
 }
