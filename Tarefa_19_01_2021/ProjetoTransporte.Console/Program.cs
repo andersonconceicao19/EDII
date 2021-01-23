@@ -13,6 +13,7 @@ namespace ProjetoTransporte.Cons
             int result;
             Veiculos _veiculos = new Veiculos();
             Garagens _garagens = new Garagens();
+            Viagens _viagens = new Viagens();
 
             _veiculos.incluir(new Veiculo(1, "BRASIL-1", 30));
             _veiculos.incluir(new Veiculo(2, "BRASIL-2", 30));
@@ -22,8 +23,8 @@ namespace ProjetoTransporte.Cons
             _veiculos.incluir(new Veiculo(6, "BRASIL-6", 30));
             _veiculos.incluir(new Veiculo(7, "BRASIL-7", 30));
             _veiculos.incluir(new Veiculo(8, "BRASIL-8", 30));
-            _garagens.Garagems.Add(new Garagem(1, "Guarulhos"));
-            _garagens.Garagems.Add(new Garagem(2, "Congonhas"));
+            _garagens.Garagems.Add(new Garagem(1, "guarulhos"));
+            _garagens.Garagems.Add(new Garagem(2, "congonhas"));
 
             do
             {
@@ -53,34 +54,16 @@ namespace ProjetoTransporte.Cons
 
                                 Console.Write("Quantidade de Passageiros permitidos: ");
                                 int lotacao = int.Parse(Console.ReadLine());
-                                 _veiculos.incluir(new Veiculo(id, placa, lotacao));
-
-                              
-                                /*for (int i = _veiculos.VeiculosList.Count; i <= _veiculos.VeiculosList.Count; i++)
-                                {
-                                    if ((i % 2) == 0) 
-                                    {
-                                        _garagens.Garagems[0].Veiculos.Push(_veiculos.VeiculosList[i-1]);
-                                    }
-                                    if ((i % 2) != 0)
-                                    {
-                                        _garagens.Garagems[1].Veiculos.Push(_veiculos.VeiculosList[i-1]);
-                                    }
-
-                                }       */                         
+                                 _veiculos.incluir(new Veiculo(id, placa, lotacao));                
                              
                         }
                         catch (Exception)
-                        {
-
-                           
-                        }
-
+                        {}
                         break;
                     case 2:
                         try
                         {
-                            Console.WriteLine("Local da garagem: ");
+                            Console.Write("Local da garagem: ");
                             var local = Console.ReadLine();
                             int codGaragem =_garagens.Garagems.Count + 1;
                             _garagens.Garagems.Add(new Garagem(codGaragem, local));
@@ -93,42 +76,88 @@ namespace ProjetoTransporte.Cons
                         }
                         break;
                     case 3:
-                        var counts = _veiculos.VeiculosList.Count;
-                        double distribuicao = _veiculos.VeiculosList.Count / _garagens.Garagems.Count;
-                        var seila = (distribuicao * _garagens.Garagems.Count) == _veiculos.VeiculosList.Count ? true : false;
-                        int popula = 0;
-                        for (int i = 0; i < _garagens.Garagems.Count; i++)
-                        {                           
-                            
-                            do
-                            {      
-                                if(popula == distribuicao)
-                                {
-                                    popula = 0;
-                                }
-                                if(counts == 0)
-                                {
-                                    break;
-                                }
-                                _garagens.Garagems[i].Veiculos.Push(_veiculos.VeiculosList[counts - 1]);
-                                popula++;
-                                counts--;
-
-                            } 
-                            while (distribuicao != popula );
-                            
-                        }
-                        if (!seila)
+                        try
                         {
-                            for (int j = 0; j < counts; j++)
+                            var counts = _veiculos.VeiculosList.Count;
+                            double distribuicao = _veiculos.VeiculosList.Count / _garagens.Garagems.Count;
+                            var seila = (distribuicao * _garagens.Garagems.Count) == _veiculos.VeiculosList.Count ? true : false;
+                            int popula = 0;
+                            for (int i = 0; i < _garagens.Garagems.Count; i++)
                             {
-                                if (counts == 0)
+
+                                do
                                 {
-                                    break;
+                                    if (popula == distribuicao)
+                                    {
+                                        popula = 0;
+                                    }
+                                    if (counts == 0)
+                                    {
+                                        break;
+                                    }
+                                    _garagens.Garagems[i].Veiculos.Push(_veiculos.VeiculosList[counts - 1]);
+                                    popula++;
+                                    counts--;
+
                                 }
-                                _garagens.Garagems[0].Veiculos.Push(_veiculos.VeiculosList[counts - 1]);
-                            };
+                                while (distribuicao != popula);
+
+                            }
+                            if (!seila)
+                            {
+                                for (int j = 0; j < counts; j++)
+                                {
+                                    if (counts == 0)
+                                    {
+                                        break;
+                                    }
+                                    _garagens.Garagems[0].Veiculos.Push(_veiculos.VeiculosList[counts - 1]);
+                                };
+                            }
+                            _garagens.iniciarJornada();
                         }
+                        catch (Exception)
+                        { }
+                        break;
+                    case 4: // TRABALHANDO aqui
+                        foreach (var veic in _veiculos.VeiculosList)
+                        {
+                            Console.WriteLine($"Veiculo da placa: {veic.Placa}. Carregou {veic.Lotacao*2} pessoas, entre percurso de ida e volta");
+                        }
+                        _garagens.encerrarJornada();
+                        Console.ReadLine();
+                        break;
+                    case 5:
+                        Console.Write("Origem: ");
+                        var origemDesc = Console.ReadLine();
+
+                        if(!_garagens.Garagems.Exists(x => x.Local == origemDesc))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Origem não existe!");
+                            Thread.Sleep(1800);
+                            Console.Clear();
+                            return;
+                        }
+
+                        if (_garagens.Garagems.Find(x => x.Local == origemDesc).Veiculos.Count == 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("É necessário que tenha veiculo disponivel");
+                            Thread.Sleep(1800);
+                            Console.Clear();
+                            return;
+                        };
+                        
+                        Console.Write("Destino: ");
+                        var destinoDesc = Console.ReadLine();
+
+                        var garagemOrigem = _garagens.Garagems.Find(x => x.Local == origemDesc);
+                        var garagemDestino = _garagens.Garagems.Find(x => x.Local == destinoDesc);
+                        var veiculoSaida = garagemOrigem.Veiculos.Pop();
+
+                        _viagens.incluir(new Viagem(_viagens.ViagensQueue.Count+1, garagemOrigem, garagemDestino, veiculoSaida));
+                        garagemDestino.Veiculos.Push(veiculoSaida);
                         break;
                     default:
                         break;

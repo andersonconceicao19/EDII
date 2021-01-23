@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace ProjetoTransporte.Domain
 {
     public class Viagens
     {
+        public Viagens()
+        {
+            ViagensQueue = new Queue<Viagem>();
+        }
         public Queue<Viagem> ViagensQueue { get; set; }
         
         public void incluir(Viagem viagem)

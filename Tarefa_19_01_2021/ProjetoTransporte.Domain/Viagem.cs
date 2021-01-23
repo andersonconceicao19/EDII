@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjetoTransporte.Domain
+﻿namespace ProjetoTransporte.Domain
 {
     public class Viagem
     {
+        public Viagem(int id, Garagem origem, Garagem destino, Veiculo veiculo)
+        {
+            Id = id;
+            Origem = origem;
+            Destino = destino;
+            Veiculo = veiculo;
+        }
+
         public int Id { get; set; }
         public Garagem Origem { get; set; }
         public Garagem Destino { get; set; }
