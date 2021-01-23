@@ -95,8 +95,21 @@ namespace ProjetoTransporte.Cons
                          
                         }
                         break;
-                    case 3:
-                        _garagens.iniciarJornada();
+                    case 6:
+                        Console.Clear();
+                        Console.Write($"Garagem de guarulhos:\n");
+                        foreach (var item in _garagens.Garagems[0].Veiculos)
+                        {
+                            Console.WriteLine($"Placa: {item.Placa}, Lotação: {item.Lotacao}");
+                        }
+                        Console.Write($"Garagem de Congonhas:\n\n");
+                        foreach (var item in _garagens.Garagems[1].Veiculos)
+                        {
+                            Console.WriteLine($"Placa: {item.Placa}, Lotação: {item.Lotacao}");
+                        }
+
+                        Console.WriteLine("\n--------Aperte qualquer tecla para prosseguir!");
+                        Console.ReadLine();
                         break;
                     default:
                         break;
