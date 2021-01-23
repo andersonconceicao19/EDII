@@ -128,36 +128,44 @@ namespace ProjetoTransporte.Cons
                         Console.ReadLine();
                         break;
                     case 5:
-                        Console.Write("Origem: ");
-                        var origemDesc = Console.ReadLine();
-
-                        if(!_garagens.Garagems.Exists(x => x.Local == origemDesc))
+                        try
                         {
-                            Console.Clear();
-                            Console.WriteLine("Origem não existe!");
-                            Thread.Sleep(1800);
-                            Console.Clear();
-                            return;
+                            Console.Write("Origem: ");
+                            var origemDesc = Console.ReadLine();
+
+                            if (!_garagens.Garagems.Exists(x => x.Local == origemDesc))
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Origem não existe!");
+                                Thread.Sleep(1800);
+                                Console.Clear();
+                                return;
+                            }
+
+                            if (_garagens.Garagems.Find(x => x.Local == origemDesc).Veiculos.Count == 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("É necessário que tenha veiculo disponivel");
+                                Thread.Sleep(1800);
+                                Console.Clear();
+                                return;
+                            };
+
+                            Console.Write("Destino: ");
+                            var destinoDesc = Console.ReadLine();
+
+                            var garagemOrigem = _garagens.Garagems.Find(x => x.Local == origemDesc);
+                            var garagemDestino = _garagens.Garagems.Find(x => x.Local == destinoDesc);
+                            var veiculoSaida = garagemOrigem.Veiculos.Pop();
+
+                            _viagens.incluir(new Viagem(_viagens.ViagensQueue.Count + 1, garagemOrigem, garagemDestino, veiculoSaida));
+                            garagemDestino.Veiculos.Push(veiculoSaida);
+
                         }
-
-                        if (_garagens.Garagems.Find(x => x.Local == origemDesc).Veiculos.Count == 0)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("É necessário que tenha veiculo disponivel");
-                            Thread.Sleep(1800);
-                            Console.Clear();
-                            return;
-                        };
-                        
-                        Console.Write("Destino: ");
-                        var destinoDesc = Console.ReadLine();
-
-                        var garagemOrigem = _garagens.Garagems.Find(x => x.Local == origemDesc);
-                        var garagemDestino = _garagens.Garagems.Find(x => x.Local == destinoDesc);
-                        var veiculoSaida = garagemOrigem.Veiculos.Pop();
-
-                        _viagens.incluir(new Viagem(_viagens.ViagensQueue.Count+1, garagemOrigem, garagemDestino, veiculoSaida));
-                        garagemDestino.Veiculos.Push(veiculoSaida);
+                        catch (Exception)
+                        { }
+                        break;
+                    case 6:
                         break;
                     default:
                         break;
