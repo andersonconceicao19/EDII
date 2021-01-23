@@ -166,6 +166,26 @@ namespace ProjetoTransporte.Cons
                         { }
                         break;
                     case 6:
+                        try
+                        {
+                            Console.Write("Qual Garagem deseja : ");
+                            var qualGaragemVoceQuer = Console.ReadLine();
+                            var mostraGaragem = _garagens.Garagems.Find(x => x.Local == qualGaragemVoceQuer);
+
+                            Console.Clear();
+                            Console.WriteLine($"A garagem possui: { mostraGaragem.Veiculos.Count} veiculos\n");
+                            foreach (var lv in mostraGaragem.Veiculos)
+                            {
+                                Console.WriteLine($"Placa: {lv.Placa} - Lotação Máxima: {lv.Lotacao}");
+                            }                            
+                            Console.WriteLine("\n\n--------------- Pressiona qualquer tecla para continuar -----------------");
+                            
+                            Console.ReadLine();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
                         break;
                     default:
                         break;
