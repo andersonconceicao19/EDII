@@ -8,11 +8,6 @@ namespace ProjetoTransporte.Domain
 {
     public class Garagem
     {
-        public Garagem()
-        {
-
-        }
-
         public Garagem(int id, string local)
         {
             Id = id;
@@ -26,11 +21,11 @@ namespace ProjetoTransporte.Domain
         
         public int qtdeDeVeiculos()
         {
-            return 1;
+            return Veiculos.Count;
         }
         public int potencialDeTransporte()
         {
-            return 1;
+            return Veiculos.Count - 8;
         }
 
     }

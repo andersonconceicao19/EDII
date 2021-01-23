@@ -11,6 +11,7 @@ namespace ProjetoTransporte.Domain
         public Garagens()
         {
             Garagems = new List<Garagem>();
+            JornadaAtiva = false;
         }
 
 
@@ -20,14 +21,15 @@ namespace ProjetoTransporte.Domain
 
         public void incluir(Garagem garagem)
         {
-
+            Garagems.Add(garagem);
         }
         public void iniciarJornada()
         {
-
+            JornadaAtiva = true;
         }
         public List<Transporte> encerrarJornada()
         {
+            JornadaAtiva = false;
             return null;
         }
 
