@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace ProjetoTransporte.Domain
 {
-    public class Veiculos
+    public class Garagens
     {
+        public List<Garagem> Garagems { get; set; }
+        public bool JornadaAtiva { get; set; }
+        
+
+        public void incluir(Garagem garagem)
+        {
+
+        }
+        public void iniciarJornada()
+        {
+
+        }
+        public List<Transporte> encerrarJornada()
+        {
+            return null;
+        }
+
     }
 }

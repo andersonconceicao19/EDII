@@ -10,8 +10,6 @@ namespace ProjetoTransporte.Domain
     {
         public List<Veiculo> VeiculosList { get; set; }
         
-
-
         public bool incluir(Veiculo veiculo)
         {            
             VeiculosList.Add(veiculo);

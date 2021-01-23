@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ProjetoTransporte.Domain
 {
-    public class Veiculos
+    public class Viagens
     {
+        public Queue<Viagem> ViagensQueue { get; set; }
+        
+        public void incluir(Viagem viagem)
+        {
+            ViagensQueue.Enqueue(viagem);
+        }
     }
 }
