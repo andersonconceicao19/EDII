@@ -7,11 +7,24 @@ namespace ProjetoTransporte.Cons
 {
     class Program
     {
+       
         static void Main(string[] args)
         {
             int result;
             Veiculos _veiculos = new Veiculos();
             Garagens _garagens = new Garagens();
+
+            _veiculos.incluir(new Veiculo(1, "BRASIL-1", 30));
+            _veiculos.incluir(new Veiculo(2, "BRASIL-2", 30));
+            _veiculos.incluir(new Veiculo(3, "BRASIL-3", 30));
+            _veiculos.incluir(new Veiculo(4, "BRASIL-4", 30));
+            _veiculos.incluir(new Veiculo(5, "BRASIL-5", 30));
+            _veiculos.incluir(new Veiculo(6, "BRASIL-6", 30));
+            _veiculos.incluir(new Veiculo(7, "BRASIL-7", 30));
+            _veiculos.incluir(new Veiculo(8, "BRASIL-8", 30));
+            _garagens.Garagems.Add(new Garagem(1, "Guarulhos"));
+            _garagens.Garagems.Add(new Garagem(2, "Congonhas"));
+
             do
             {
                 Console.Clear();
@@ -34,8 +47,7 @@ namespace ProjetoTransporte.Cons
                         try
                         {
                             int id = _veiculos.VeiculosList.Count + 1;
-                            if (id < 9)
-                            {                               
+                                                         
                                 Console.Write("Placa do Veiculos: ");
                                 string placa = Console.ReadLine();
 
@@ -44,7 +56,7 @@ namespace ProjetoTransporte.Cons
                                  _veiculos.incluir(new Veiculo(id, placa, lotacao));
 
                               
-                                for (int i = _veiculos.VeiculosList.Count; i <= _veiculos.VeiculosList.Count; i++)
+                                /*for (int i = _veiculos.VeiculosList.Count; i <= _veiculos.VeiculosList.Count; i++)
                                 {
                                     if ((i % 2) == 0) 
                                     {
@@ -55,14 +67,8 @@ namespace ProjetoTransporte.Cons
                                         _garagens.Garagems[1].Veiculos.Push(_veiculos.VeiculosList[i-1]);
                                     }
 
-                                }                                
-                                
-                            }
-                            else
-                            {
-                                Console.WriteLine("Excedeu o limite de veiculos cadastrados, entre em contato com adm!");
-                                Thread.Sleep(1500);
-                            }
+                                }       */                         
+                             
                         }
                         catch (Exception)
                         {
@@ -74,20 +80,11 @@ namespace ProjetoTransporte.Cons
                     case 2:
                         try
                         {
-                            
-                            if(_garagens.Garagems.Count == 0)
-                            {
-                                _garagens.Garagems.Add(new Garagem(1, "Guarulhos"));                                
-                                _garagens.Garagems.Add(new Garagem(2, "Congonhas"));
-                                Console.WriteLine("Cadastrados!");
-                                Thread.Sleep(1500);
-                            }
-                            else
-                            {
-                                
-                               Console.WriteLine("Já foram cadastradas o maximo de garagens possiveis!");
-                                Thread.Sleep(1500);
-                            }
+                            Console.WriteLine("Local da garagem: ");
+                            var local = Console.ReadLine();
+                            int codGaragem =_garagens.Garagems.Count + 1;
+                            _garagens.Garagems.Add(new Garagem(codGaragem, local));
+
                         }
                         catch (Exception)
                         {
@@ -95,21 +92,43 @@ namespace ProjetoTransporte.Cons
                          
                         }
                         break;
-                    case 6:
-                        Console.Clear();
-                        Console.Write($"Garagem de guarulhos:\n");
-                        foreach (var item in _garagens.Garagems[0].Veiculos)
-                        {
-                            Console.WriteLine($"Placa: {item.Placa}, Lotação: {item.Lotacao}");
-                        }
-                        Console.Write($"Garagem de Congonhas:\n\n");
-                        foreach (var item in _garagens.Garagems[1].Veiculos)
-                        {
-                            Console.WriteLine($"Placa: {item.Placa}, Lotação: {item.Lotacao}");
-                        }
+                    case 3:
+                        var counts = _veiculos.VeiculosList.Count;
+                        double distribuicao = _veiculos.VeiculosList.Count / _garagens.Garagems.Count;
+                        var seila = (distribuicao * _garagens.Garagems.Count) == _veiculos.VeiculosList.Count ? true : false;
+                        int popula = 0;
+                        for (int i = 0; i < _garagens.Garagems.Count; i++)
+                        {                           
+                            
+                            do
+                            {      
+                                if(popula == distribuicao)
+                                {
+                                    popula = 0;
+                                }
+                                if(counts == 0)
+                                {
+                                    break;
+                                }
+                                _garagens.Garagems[i].Veiculos.Push(_veiculos.VeiculosList[counts - 1]);
+                                popula++;
+                                counts--;
 
-                        Console.WriteLine("\n--------Aperte qualquer tecla para prosseguir!");
-                        Console.ReadLine();
+                            } 
+                            while (distribuicao != popula );
+                            
+                        }
+                        if (!seila)
+                        {
+                            for (int j = 0; j < counts; j++)
+                            {
+                                if (counts == 0)
+                                {
+                                    break;
+                                }
+                                _garagens.Garagems[0].Veiculos.Push(_veiculos.VeiculosList[counts - 1]);
+                            };
+                        }
                         break;
                     default:
                         break;
