@@ -8,6 +8,12 @@ namespace ProjetoTransporte.Domain
 {
     public class Garagens
     {
+        public Garagens()
+        {
+            Garagems = new List<Garagem>();
+        }
+
+
         public List<Garagem> Garagems { get; set; }
         public bool JornadaAtiva { get; set; }
         

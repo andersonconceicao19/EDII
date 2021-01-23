@@ -29,20 +29,21 @@ namespace ProjetoTransporte
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCadastroGaragem = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnCadastroGaragem
             // 
-            this.button1.Location = new System.Drawing.Point(122, 193);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cadastrar garagem ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCadastroGaragem.Location = new System.Drawing.Point(122, 193);
+            this.btnCadastroGaragem.Name = "btnCadastroGaragem";
+            this.btnCadastroGaragem.Size = new System.Drawing.Size(106, 23);
+            this.btnCadastroGaragem.TabIndex = 0;
+            this.btnCadastroGaragem.Text = "Cadastrar garagem ";
+            this.btnCadastroGaragem.UseVisualStyleBackColor = true;
+            this.btnCadastroGaragem.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -81,7 +82,7 @@ namespace ProjetoTransporte
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCadastroGaragem);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -91,7 +92,7 @@ namespace ProjetoTransporte
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCadastroGaragem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;

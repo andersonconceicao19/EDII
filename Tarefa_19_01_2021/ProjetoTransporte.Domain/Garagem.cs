@@ -8,6 +8,18 @@ namespace ProjetoTransporte.Domain
 {
     public class Garagem
     {
+        public Garagem()
+        {
+
+        }
+
+        public Garagem(int id, string local)
+        {
+            Id = id;
+            Local = local;
+            Veiculos = new Stack<Veiculo>();
+        }
+
         public int Id { get; set; }
         public string Local { get; set; }
         public Stack<Veiculo> Veiculos { get; set; }

@@ -25,6 +25,11 @@ namespace ProjetoTransporte
             try
             {
                 int id = _veiculos.VeiculosList.Count + 1;
+                if(id > 8)
+                {
+                    MessageBox.Show("Excedeu o limite permidito de cadastro!");
+                    return;
+                }
                 string placa = txtPlaca.Text;
                 int lotacao = int.Parse(txtLotacao.Text);
                 var result = _veiculos.incluir(new Veiculo(id, placa, lotacao));

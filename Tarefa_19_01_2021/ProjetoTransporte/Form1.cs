@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoTransporte.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,8 +25,20 @@ namespace ProjetoTransporte
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CadastrarVeiculos FormCadastro = new CadastrarVeiculos();
-            FormCadastro.Visible = true;
+            CadastrarVeiculos formCadastro = new CadastrarVeiculos();
+            formCadastro.Visible = true;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            Garagens _garagens = new Garagens();
+            _garagens.Garagems.Add(new Garagem(1, "Guarulhos"));
+            _garagens.Garagems.Add(new Garagem(2, "Congonhas"));
+            btnCadastroGaragem.Enabled = false;
+            MessageBox.Show("Cadastrado as garagens de:\nGuarulhos \nCongonhas ");
+            
+        }
+
     }
 }
