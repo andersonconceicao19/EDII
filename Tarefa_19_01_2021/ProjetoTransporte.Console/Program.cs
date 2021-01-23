@@ -239,6 +239,26 @@ namespace ProjetoTransporte.Cons
 
                         break;
                     case 9:
+                        Console.Write("Qual origem deseja saber: ");
+                        var orgxy = Console.ReadLine();
+
+                        Console.Write("Qual destino deseja saber: ");
+                        var destxy = Console.ReadLine();
+                        var bvvcxy = _viagens.ViagensQueue.ToArray();
+
+                        var x19xy = bvvcxy.Where(x => x.Destino.Local == destxy && x.Origem.Local == orgxy).ToList();
+
+                        Console.Clear();
+                        int contagem = 0;
+                        for (int i = 0; i < x19xy.Count; i++)
+                        {
+                            contagem += x19xy[i].Veiculo.Lotacao;
+                        }
+
+                        Console.Write($"Quantidade transportadas neste destino: {contagem}");
+                        Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
+                        Console.ReadLine();
+
                         break;
 
                     default:
