@@ -8,6 +8,7 @@ namespace ProjetoTransporte.Domain
 {
     public class Veiculo
     {
+   
         public Veiculo()
         {
             Id = 0;

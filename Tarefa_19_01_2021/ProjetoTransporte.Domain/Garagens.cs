@@ -25,6 +25,7 @@ namespace ProjetoTransporte.Domain
         }
         public void iniciarJornada()
         {
+            
             JornadaAtiva = true;
         }
         public List<Transporte> encerrarJornada()

@@ -1,5 +1,6 @@
 ﻿using ProjetoTransporte.Domain;
 using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ProjetoTransporte.Cons
@@ -10,6 +11,7 @@ namespace ProjetoTransporte.Cons
         {
             int result;
             Veiculos _veiculos = new Veiculos();
+            Garagens _garagens = new Garagens();
             do
             {
                 Console.Clear();
@@ -39,8 +41,28 @@ namespace ProjetoTransporte.Cons
 
                                 Console.Write("Quantidade de Passageiros permitidos: ");
                                 int lotacao = int.Parse(Console.ReadLine());
-                                var res = _veiculos.incluir(new Veiculo(id, placa, lotacao));
-                            }                          
+                                 _veiculos.incluir(new Veiculo(id, placa, lotacao));
+
+                              
+                                for (int i = _veiculos.VeiculosList.Count; i <= _veiculos.VeiculosList.Count; i++)
+                                {
+                                    if ((i % 2) == 0) 
+                                    {
+                                        _garagens.Garagems[0].Veiculos.Push(_veiculos.VeiculosList[i-1]);
+                                    }
+                                    if ((i % 2) != 0)
+                                    {
+                                        _garagens.Garagems[1].Veiculos.Push(_veiculos.VeiculosList[i-1]);
+                                    }
+
+                                }                                
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("Excedeu o limite de veiculos cadastrados, entre em contato com adm!");
+                                Thread.Sleep(1500);
+                            }
                         }
                         catch (Exception)
                         {
@@ -52,9 +74,20 @@ namespace ProjetoTransporte.Cons
                     case 2:
                         try
                         {
-                            Garagens _garagens = new Garagens();
-                            _garagens.Garagems.Add(new Garagem(1, "Guarulhos"));
-                            _garagens.Garagems.Add(new Garagem(2, "Congonhas"));
+                            
+                            if(_garagens.Garagems.Count == 0)
+                            {
+                                _garagens.Garagems.Add(new Garagem(1, "Guarulhos"));                                
+                                _garagens.Garagems.Add(new Garagem(2, "Congonhas"));
+                                Console.WriteLine("Cadastrados!");
+                                Thread.Sleep(1500);
+                            }
+                            else
+                            {
+                                
+                               Console.WriteLine("Já foram cadastradas o maximo de garagens possiveis!");
+                                Thread.Sleep(1500);
+                            }
                         }
                         catch (Exception)
                         {
@@ -63,6 +96,7 @@ namespace ProjetoTransporte.Cons
                         }
                         break;
                     case 3:
+                        _garagens.iniciarJornada();
                         break;
                     default:
                         break;
