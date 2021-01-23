@@ -20,12 +20,12 @@ namespace ProjetoTransporte.Cons
 
             _veiculos.incluir(new Veiculo(1, "BRASIL-1", 30));
             _veiculos.incluir(new Veiculo(2, "BRASIL-2", 30));
-            /*_veiculos.incluir(new Veiculo(3, "BRASIL-3", 30));
+            _veiculos.incluir(new Veiculo(3, "BRASIL-3", 30));
             _veiculos.incluir(new Veiculo(4, "BRASIL-4", 30));
             _veiculos.incluir(new Veiculo(5, "BRASIL-5", 30));
             _veiculos.incluir(new Veiculo(6, "BRASIL-6", 30));
             _veiculos.incluir(new Veiculo(7, "BRASIL-7", 30));
-            _veiculos.incluir(new Veiculo(8, "BRASIL-8", 30));*/
+            _veiculos.incluir(new Veiculo(8, "BRASIL-8", 30));
             _garagens.Garagems.Add(new Garagem(1, "guarulhos"));
             _garagens.Garagems.Add(new Garagem(2, "congonhas"));
 
@@ -33,6 +33,7 @@ namespace ProjetoTransporte.Cons
             {
                 Console.Clear();
                 Console.WriteLine(
+                    "0. Sair  \n" +
                     "1. Cadastrar veículo \n" +
                     "2. Cadastrar garagem \n" +
                     "3. Iniciar jornada \n" +
@@ -122,9 +123,22 @@ namespace ProjetoTransporte.Cons
                         catch (Exception)
                         { Console.WriteLine(); }
                         break;
-                    case 4: 
-                       
-                       
+                    case 4:
+                        for (int i = 0; i < _veiculos.VeiculosList.Count; i++)
+                        {
+                            var cont = transportes.Where(x => x.veiculo.Id == _veiculos.VeiculosList[i].Id).ToList();
+                            
+                           if(cont.Count != 0)
+                            {
+                                Console.WriteLine($"veiculo placa: { _veiculos.VeiculosList[i].Placa} | Quantidade transportado: { _veiculos.VeiculosList[i].Lotacao * cont[0].QtdeTransportada }");
+                            }
+                            else {
+                                Console.WriteLine($"veiculo placa: { _veiculos.VeiculosList[i].Placa} => Não fez viagem.");
+                            }
+                        }
+                        _garagens.encerrarJornada();                       
+                        _viagens.ViagensQueue.Clear();
+                        transportes.Clear();
                         Console.ReadLine();
                         break;
                     case 5:
@@ -202,66 +216,78 @@ namespace ProjetoTransporte.Cons
                         }
                         break;
                     case 7:
-                        Console.Write("Qual origem deseja saber: ");
-                        var org = Console.ReadLine();
+                        try
+                        {
+                            Console.Write("Qual origem deseja saber: ");
+                            var org = Console.ReadLine();
 
-                        Console.Write("Qual destino deseja saber: ");
-                        var dest = Console.ReadLine();
-                        var bvvc = _viagens.ViagensQueue.ToArray();
+                            Console.Write("Qual destino deseja saber: ");
+                            var dest = Console.ReadLine();
+                            var bvvc = _viagens.ViagensQueue.ToArray();
 
-                        var x19 = bvvc.Where(x => x.Destino.Local == dest && x.Origem.Local == org).ToList().Count;
+                            var x19 = bvvc.Where(x => x.Destino.Local == dest && x.Origem.Local == org).ToList().Count;
 
-                        Console.Clear();
-                        Console.Write($"Foram feitas nesta rota {x19} viagens!");
-                        Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
-                        Console.ReadLine();
+                            Console.Clear();
+                            Console.Write($"Foram feitas nesta rota {x19} viagens!");
+                            Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
+                            Console.ReadLine();
+                        }
+                        catch (Exception)
+                        { }
                         break;
                     case 8:
-                        Console.Write("Qual origem deseja saber: ");
-                        var orgx = Console.ReadLine();
-
-                        Console.Write("Qual destino deseja saber: ");
-                        var destx = Console.ReadLine();
-                        var bvvcx = _viagens.ViagensQueue.ToArray();
-
-                        var x19x = bvvcx.Where(x => x.Destino.Local == destx && x.Origem.Local == orgx).ToList();
-
-                        Console.Clear();
-
-                        for (int i = 0; i < x19x.Count; i++)
+                        try
                         {
-                            Console.WriteLine($"Veiculo: { x19x[i].Veiculo.Placa }| Viagens de {x19x[i].Origem} - para { x19x[i].Destino } ");
+                            Console.Write("Qual origem deseja saber: ");
+                            var orgx = Console.ReadLine();
+
+                            Console.Write("Qual destino deseja saber: ");
+                            var destx = Console.ReadLine();
+                            var bvvcx = _viagens.ViagensQueue.ToArray();
+
+                            var x19x = bvvcx.Where(x => x.Destino.Local == destx && x.Origem.Local == orgx).ToList();
+
+                            Console.Clear();
+
+                            for (int i = 0; i < x19x.Count; i++)
+                            {
+                                Console.WriteLine($"Veiculo: { x19x[i].Veiculo.Placa }| Viagens de {x19x[i].Origem} - para { x19x[i].Destino } ");
+                            }
+                            Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
+                            Console.ReadLine();
+
                         }
-
-
-                        Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
-                        Console.ReadLine();
-
+                        catch (Exception)
+                        { }
                         break;
                     case 9:
-                        Console.Write("Qual origem deseja saber: ");
-                        var orgxy = Console.ReadLine();
-
-                        Console.Write("Qual destino deseja saber: ");
-                        var destxy = Console.ReadLine();
-                        var bvvcxy = _viagens.ViagensQueue.ToArray();
-
-                        var x19xy = bvvcxy.Where(x => x.Destino.Local == destxy && x.Origem.Local == orgxy).ToList();
-
-                        Console.Clear();
-                        int contagem = 0;
-                        for (int i = 0; i < x19xy.Count; i++)
+                        try
                         {
-                            contagem += x19xy[i].Veiculo.Lotacao;
+                            Console.Write("Qual origem deseja saber: ");
+                            var orgxy = Console.ReadLine();
+
+                            Console.Write("Qual destino deseja saber: ");
+                            var destxy = Console.ReadLine();
+                            var bvvcxy = _viagens.ViagensQueue.ToArray();
+
+                            var x19xy = bvvcxy.Where(x => x.Destino.Local == destxy && x.Origem.Local == orgxy).ToList();
+
+                            Console.Clear();
+                            int contagem = 0;
+                            for (int i = 0; i < x19xy.Count; i++)
+                            {
+                                contagem += x19xy[i].Veiculo.Lotacao;
+                            }
+
+                            Console.Write($"Quantidade transportadas neste destino: {contagem}");
+                            Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
+                            Console.ReadLine();
+
                         }
+                        catch (Exception)
+                        {
 
-                        Console.Write($"Quantidade transportadas neste destino: {contagem}");
-                        Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
-                        Console.ReadLine();
-
-                        break;
-
-                    default:
+                        }
                         break;
                 }
 
