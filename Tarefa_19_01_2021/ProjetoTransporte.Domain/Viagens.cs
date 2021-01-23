@@ -13,7 +13,7 @@ namespace ProjetoTransporte.Domain
         
         public void incluir(Viagem viagem)
         {
-            ViagensQueue.Enqueue(viagem);
+            ViagensQueue.Enqueue(viagem);            
         }
     }
 }

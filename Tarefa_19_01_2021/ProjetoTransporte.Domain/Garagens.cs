@@ -24,13 +24,14 @@ namespace ProjetoTransporte.Domain
             Garagems.Add(garagem);
         }
         public void iniciarJornada()
-        {
-            
+        {            
             JornadaAtiva = true;
         }
         public List<Transporte> encerrarJornada()
         {
-            JornadaAtiva = false;
+           
+           
+           JornadaAtiva = false;
             return null;
         }
 

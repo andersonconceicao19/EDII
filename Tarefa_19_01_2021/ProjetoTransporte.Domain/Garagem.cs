@@ -23,10 +23,7 @@ namespace ProjetoTransporte.Domain
         {
             return Veiculos.Count;
         }
-        public int potencialDeTransporte()
-        {
-            return Veiculos.Count - 8;
-        }
+       
 
     }
 }

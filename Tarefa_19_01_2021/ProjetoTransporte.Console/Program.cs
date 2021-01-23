@@ -1,5 +1,7 @@
 ﻿using ProjetoTransporte.Domain;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,15 +16,16 @@ namespace ProjetoTransporte.Cons
             Veiculos _veiculos = new Veiculos();
             Garagens _garagens = new Garagens();
             Viagens _viagens = new Viagens();
+            List<Transporte> transportes = new List<Transporte>();
 
             _veiculos.incluir(new Veiculo(1, "BRASIL-1", 30));
             _veiculos.incluir(new Veiculo(2, "BRASIL-2", 30));
-            _veiculos.incluir(new Veiculo(3, "BRASIL-3", 30));
+            /*_veiculos.incluir(new Veiculo(3, "BRASIL-3", 30));
             _veiculos.incluir(new Veiculo(4, "BRASIL-4", 30));
             _veiculos.incluir(new Veiculo(5, "BRASIL-5", 30));
             _veiculos.incluir(new Veiculo(6, "BRASIL-6", 30));
             _veiculos.incluir(new Veiculo(7, "BRASIL-7", 30));
-            _veiculos.incluir(new Veiculo(8, "BRASIL-8", 30));
+            _veiculos.incluir(new Veiculo(8, "BRASIL-8", 30));*/
             _garagens.Garagems.Add(new Garagem(1, "guarulhos"));
             _garagens.Garagems.Add(new Garagem(2, "congonhas"));
 
@@ -117,14 +120,11 @@ namespace ProjetoTransporte.Cons
                             _garagens.iniciarJornada();
                         }
                         catch (Exception)
-                        { }
+                        { Console.WriteLine(); }
                         break;
-                    case 4: // TRABALHANDO aqui
-                        foreach (var veic in _veiculos.VeiculosList)
-                        {
-                            Console.WriteLine($"Veiculo da placa: {veic.Placa}. Carregou {veic.Lotacao*2} pessoas, entre percurso de ida e volta");
-                        }
-                        _garagens.encerrarJornada();
+                    case 4: 
+                       
+                       
                         Console.ReadLine();
                         break;
                     case 5:
@@ -132,14 +132,14 @@ namespace ProjetoTransporte.Cons
                         {
                             Console.Write("Origem: ");
                             var origemDesc = Console.ReadLine();
-
+                            var isvalid = true;
                             if (!_garagens.Garagems.Exists(x => x.Local == origemDesc))
                             {
                                 Console.Clear();
                                 Console.WriteLine("Origem não existe!");
                                 Thread.Sleep(1800);
                                 Console.Clear();
-                                return;
+                                isvalid = false;
                             }
 
                             if (_garagens.Garagems.Find(x => x.Local == origemDesc).Veiculos.Count == 0)
@@ -148,22 +148,36 @@ namespace ProjetoTransporte.Cons
                                 Console.WriteLine("É necessário que tenha veiculo disponivel");
                                 Thread.Sleep(1800);
                                 Console.Clear();
-                                return;
+                                isvalid = false;
                             };
 
-                            Console.Write("Destino: ");
-                            var destinoDesc = Console.ReadLine();
+                            if (isvalid)
+                            {
+                                Console.Write("Destino: ");
+                                var destinoDesc = Console.ReadLine();
 
-                            var garagemOrigem = _garagens.Garagems.Find(x => x.Local == origemDesc);
-                            var garagemDestino = _garagens.Garagems.Find(x => x.Local == destinoDesc);
-                            var veiculoSaida = garagemOrigem.Veiculos.Pop();
+                                var garagemOrigem = _garagens.Garagems.Find(x => x.Local == origemDesc);
+                                var garagemDestino = _garagens.Garagems.Find(x => x.Local == destinoDesc);
+                                var veiculoSaida = garagemOrigem.Veiculos.Pop();
+                                
+                                _viagens.incluir(new Viagem(_viagens.ViagensQueue.Count + 1, garagemOrigem, garagemDestino, veiculoSaida));
+                                garagemDestino.Veiculos.Push(veiculoSaida);
 
-                            _viagens.incluir(new Viagem(_viagens.ViagensQueue.Count + 1, garagemOrigem, garagemDestino, veiculoSaida));
-                            garagemDestino.Veiculos.Push(veiculoSaida);
+                                var xablau = transportes.Find(x => x.veiculo.Id == veiculoSaida.Id);
+                                if (xablau == null)
+                                {
+                                    transportes.Add(new Transporte(veiculoSaida));
+                                }
+                                else
+                                {
+                                    xablau.addTransporte();
+                                }
+                               
+                            }                            
 
                         }
                         catch (Exception)
-                        { }
+                        { Console.WriteLine(); }
                         break;
                     case 6:
                         try
@@ -173,7 +187,7 @@ namespace ProjetoTransporte.Cons
                             var mostraGaragem = _garagens.Garagems.Find(x => x.Local == qualGaragemVoceQuer);
 
                             Console.Clear();
-                            Console.WriteLine($"A garagem possui: { mostraGaragem.Veiculos.Count} veiculos\n");
+                            Console.WriteLine($"A garagem possui: { mostraGaragem.qtdeDeVeiculos()} veiculos\n");
                             foreach (var lv in mostraGaragem.Veiculos)
                             {
                                 Console.WriteLine($"Placa: {lv.Placa} - Lotação Máxima: {lv.Lotacao}");
@@ -184,9 +198,31 @@ namespace ProjetoTransporte.Cons
                         }
                         catch (Exception)
                         {
-
+                            Console.WriteLine();
                         }
                         break;
+                    case 7:
+                        
+                        break;
+                    case 8:
+                        Console.Write("Qual origem deseja saber: ");
+                        var org = Console.ReadLine();
+
+                        Console.Write("Qual destino deseja saber: ");
+                        var dest = Console.ReadLine();
+                        var bvvc = _viagens.ViagensQueue.ToArray();
+                       
+                        var x19 = bvvc.Where(x => x.Destino.Local == dest && x.Origem.Local == org ).ToList().Count;
+
+                        Console.Clear();
+                        Console.Write($"Foram feitas nesta rota {x19} viagens!");
+                        Console.Write("\n\n------------- Pressiona Enter para continuar ------------------- ");
+                        Console.ReadLine();
+                        
+                        break;
+                    case 9:
+                        break;
+
                     default:
                         break;
                 }
