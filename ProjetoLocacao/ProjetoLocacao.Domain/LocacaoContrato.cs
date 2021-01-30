@@ -58,8 +58,6 @@ namespace ProjetoLocacao.Domain
                 relacao.DadosRelacao();
             }
 
-            //Stack<Item> itensDisponibilizadosAux = itensDisponibilizados;
-
             foreach (var itens in ItensDisponiveis)
             {
                 itens.DadosItens();
@@ -79,7 +77,7 @@ namespace ProjetoLocacao.Domain
             }
         }
 
-        public void DisponibilizarItens(Equipamentos equipamentos)
+        public void DispoItens(Equipamentos equipamentos)
         {
             foreach (var relacao in Relacoes)
             {

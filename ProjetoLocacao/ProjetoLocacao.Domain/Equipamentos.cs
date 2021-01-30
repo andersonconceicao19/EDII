@@ -16,7 +16,7 @@ namespace ProjetoLocacao.Domain
 
         public bool Cadastrar(Equipamento equipamento)
         {
-            if (equipamentoExiste(equipamento))
+            if (eqpExiste(equipamento))
             {
                 return false;
             }
@@ -37,7 +37,7 @@ namespace ProjetoLocacao.Domain
             }
         }
 
-        private bool equipamentoExiste(Equipamento equipamento)
+        private bool eqpExiste(Equipamento equipamento)
         {
             if (equipamentos.Where(x => x.Equals(equipamento)).Count() > 0)
                 return true;

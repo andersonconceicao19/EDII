@@ -16,14 +16,14 @@ namespace ProjetoLocacao.Domain
 
         public void Cadastrar(LocacaoContrato contrato)
         {
-            if (IdJaCadastrado(contrato))
+            if (IdExiste(contrato))
                 throw new Exception("Um equipamento com este Id já foi cadastrado");
 
             contratos.Add(contrato);
 
         }
 
-        private bool IdJaCadastrado(LocacaoContrato contrato)
+        private bool IdExiste(LocacaoContrato contrato)
         {
             if (contratos.Where(x => x.Equals(contrato)).Count() > 0)
                 return true;
@@ -39,12 +39,12 @@ namespace ProjetoLocacao.Domain
             }
         }
 
-        internal List<LocacaoContrato> ListarContratosLiberados()
+        public List<LocacaoContrato> ListContraLiberados()
         {
             return contratos.Where(x => x.Liberar()).ToList();
         }
 
-        internal List<LocacaoContrato> PesquisarComFiltros(LocacaoContrato contrato)
+        public List<LocacaoContrato> PesquisarComFiltros(LocacaoContrato contrato)
         {
             List<LocacaoContrato> contratosPesquisados = contratos;
 
@@ -66,7 +66,7 @@ namespace ProjetoLocacao.Domain
             return contratosPesquisados;
         }
 
-        internal LocacaoContrato Buscar(LocacaoContrato contratoLocacao)
+        public LocacaoContrato Buscar(LocacaoContrato contratoLocacao)
         {
             return contratos.Where(x => x.Equals(contratoLocacao)).FirstOrDefault();
         }
